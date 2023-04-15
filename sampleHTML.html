@@ -16,10 +16,35 @@ var page=0;
     //1 - account details
     //2 - websites visited
     //3 - payment settings
-    //I might end up deleting this
+    //I might delete this
+    
+function checkDonations(){
+	document.getElementById("checkDonButton").style.display = "none";
+   	document.getElementById("checkWebButton").style.display = "none";
+   	document.getElementById("checkPayButton").style.display = "none";
+    document.getElementById("backButton").style.display = "block";
+    document.getElementById("pageTitle").innerHTML = "Check your donations";
+    
+    document.getElementById("1a").style.display = "block";
+    document.getElementById("1b").style.display = "block";
+    //Get user history
+    document.getElementById("1c").style.display = "block";
+    //That's a whole thing
+    document.getElementById("1d").style.display = "block";
+    document.getElementById("1e").style.display = "block";
+    //Get user history
+    document.getElementById("1f").style.display = "block";
+    document.getElementById("1g").style.display = "block";
+    //Get user history
+
+}
+
+function donateNow(){
+	alert("Eventually we'll have some code and this'll confirm the donation");
+}
     
 function checkWebsites(){
-	document.getElementById("checkAccButton").style.display = "none";
+	document.getElementById("checkDonButton").style.display = "none";
    	document.getElementById("checkWebButton").style.display = "none";
    	document.getElementById("checkPayButton").style.display = "none";
     document.getElementById("backButton").style.display = "block";
@@ -35,11 +60,19 @@ function checkWebsites(){
 }
 
 function goBack(){
-	document.getElementById("checkAccButton").style.display = "block";
+	document.getElementById("checkDonButton").style.display = "block";
    	document.getElementById("checkWebButton").style.display = "block";
    	document.getElementById("checkPayButton").style.display = "block";
     document.getElementById("backButton").style.display = "none";
     document.getElementById("pageTitle").innerHTML = "Home";
+
+    document.getElementById("1a").style.display = "none";
+    document.getElementById("1b").style.display = "none";
+    document.getElementById("1c").style.display = "none";
+    document.getElementById("1d").style.display = "none";
+    document.getElementById("1e").style.display = "none";
+    document.getElementById("1f").style.display = "none";
+    document.getElementById("1g").style.display = "none";
 
 	document.getElementById("2a").style.display = "none";
     document.getElementById("2b").style.display = "none";
@@ -55,15 +88,23 @@ function goBack(){
 
 <h1>WavePay</h1>
 <h2 id=pageTitle>Home</h2>
-<button id="checkAccButton" onclick="checkAccount()">Check yout account details</button>
+<button id="checkDonButton" onclick="checkDonations()">Check yout donation details</button>
 <button id="checkWebButton" onclick="checkWebsites()">Check the websites you've visited</button>
 <button id="checkPayButton" onclick="checkPayments()">Check your payment settings</button>
 <button hidden id="backButton" onclick="goBack()">Back</button>
 
+<h3 hidden id="1a">This cycle, you're on track to donate:</h3>
+<p  hidden id="1b">this should be a list eventually, in $x - website.com format</p>
+<button hidden id="1c" onclick="donateNow()">Donate now</button>
+<h3 hidden id="1d">Last cycles's donations:</h3>
+<p  hidden id="1e">this should also be a list eventually</p>
+<h3 hidden id="1f">Overall donations:</h3>
+<p  hidden id="1g">this should also be a list eventually</p>
+
 <h3 hidden id="2a">Websites you've visited in the past week:</h3>
 <p  hidden id="2b">this should be a list eventually</p>
 <h3 hidden id="2c">Websites you've visited overall:</h3>
-<p  hidden id="2d">tihs should also be a list eventually</p>
+<p  hidden id="2d">this should also be a list eventually</p>
 
 </body>
 </html>
