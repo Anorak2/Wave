@@ -17,6 +17,11 @@ var page=0;
     //2 - websites visited
     //3 - payment settings
     //I might delete this
+var donationAmt = 10;
+	//The current weekly donation amount. This should be retrived from somewhere
+var balanceAmt = 25;
+	//The current balance in the wallet. This should also be retrived
+
     
 function checkDonations(){
 	document.getElementById("checkDonButton").style.display = "none";
@@ -48,7 +53,7 @@ function checkWebsites(){
    	document.getElementById("checkWebButton").style.display = "none";
    	document.getElementById("checkPayButton").style.display = "none";
     document.getElementById("backButton").style.display = "block";
-    document.getElementById("pageTitle").innerHTML = "Check the websites you've visited";
+    document.getElementById("pageTitle").innerHTML = "Websites you've visited";
     
     document.getElementById("2a").style.display = "block";
     document.getElementById("2b").style.display = "block";
@@ -57,6 +62,36 @@ function checkWebsites(){
     document.getElementById("2d").style.display = "block";
     //Get user history
 
+}
+
+function checkPayments(){
+	document.getElementById("checkDonButton").style.display = "none";
+   	document.getElementById("checkWebButton").style.display = "none";
+   	document.getElementById("checkPayButton").style.display = "none";
+    document.getElementById("backButton").style.display = "block";
+    document.getElementById("pageTitle").innerHTML = "Donation settings";
+    
+    document.getElementById("3a").style.display = "block";
+    document.getElementById("3b").style.display = "block";
+    //Get wallet
+    document.getElementById("3c").style.display = "block";
+    //That's a whole thing
+    document.getElementById("3d").style.display = "block";
+    document.getElementById("3e").style.display = "block";
+    //Get user history
+    document.getElementById("3f").style.display = "block";
+    document.getElementById("3g").style.display = "block";
+    //Get user history
+    document.getElementById("3h").style.display = "block";
+    document.getElementById("3i").style.display = "block";
+}
+
+function addRipple(){
+	alert("Eventually we'll have some code and this'll confirm the addition of XRPL");
+}
+
+function updateDon(){
+	alert("Eventually we'll have some code and this'll confirm the donation amount");
 }
 
 function goBack(){
@@ -78,8 +113,22 @@ function goBack(){
     document.getElementById("2b").style.display = "none";
     document.getElementById("2c").style.display = "none";
     document.getElementById("2d").style.display = "none";
+    
+    document.getElementById("3a").style.display = "none";
+    document.getElementById("3b").style.display = "none";
+    document.getElementById("3c").style.display = "none";
+    document.getElementById("3d").style.display = "none";
+    document.getElementById("3e").style.display = "none";
+    document.getElementById("3f").style.display = "none";
+    document.getElementById("3g").style.display = "none";
+    document.getElementById("3h").style.display = "none";
+    document.getElementById("3i").style.display = "none";
 }
 
+document.getElementById("3g").innerHTML = document.getElementById("3f").value;
+document.getElementById("3f").oninput = function() {
+  document.getElementById("3g").innerHTML = "New value: " + document.getElementById("3g").value;
+}
 //Connect to a list of websites
 //Connect to the wallet
 </script>
@@ -90,7 +139,7 @@ function goBack(){
 <h2 id=pageTitle>Home</h2>
 <button id="checkDonButton" onclick="checkDonations()">Check yout donation details</button>
 <button id="checkWebButton" onclick="checkWebsites()">Check the websites you've visited</button>
-<button id="checkPayButton" onclick="checkPayments()">Check your payment settings</button>
+<button id="checkPayButton" onclick="checkPayments()">Check your donation settings</button>
 <button hidden id="backButton" onclick="goBack()">Back</button>
 
 <h3 hidden id="1a">This cycle, you're on track to donate:</h3>
@@ -105,6 +154,17 @@ function goBack(){
 <p  hidden id="2b">this should be a list eventually</p>
 <h3 hidden id="2c">Websites you've visited overall:</h3>
 <p  hidden id="2d">this should also be a list eventually</p>
+
+<h3 hidden id="3a">Account balance:</h3>
+<p  hidden id="3b">this will display the account balance</p>
+<button hidden id="3c" onclick="addRipple()">Add Ripple</button>
+<h3 hidden id="3d">Weekly donation amount:</h3>
+<p  hidden id="3e">X XRPL</p>
+<input hidden type="range" min="0" max=balanceAmt value=donationAmt class="slider" id="3f">
+<p  hidden id="3g">New value: </p>
+<button hidden id="3h" onclick="updateDon()">Confirm new value</button>
+<p  hidden id="3i">Your donations are automatic and will happen every Sunday.</p>
+
 
 </body>
 </html>
