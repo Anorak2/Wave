@@ -15,7 +15,20 @@
         "matches": ["*://*.mozilla.org/*"],
         "js": ["app.js"]
       }
-    ]
-  
+    ],
+
+    "browser_action":{
+      "default_icon":{
+        "19":"icon-19.png",
+        "38":"icon-38.png"
+      },
+      "default_popup":"popup/popup.html"
+     },
+     "background":{
+      "scripts":["background.js"]
+    },
+    "permissions":[
+        "tabs"
+    ] 
   }
   
