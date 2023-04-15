@@ -3,8 +3,8 @@
     "manifest_version": 2,
     "name": "Wave",
     "version": "1.0",
-  
-    "description": "Adds a red border to all webpages matching mozilla.org.",
+    "homepage_url": "https://github.com/Anorak2/Wave",
+    "description": "Allows payment to websites you use.",
   
     "icons": {
       "48": "icons/border-48.png"
@@ -12,7 +12,7 @@
   
     "content_scripts": [
       {
-        "matches": ["*://*.mozilla.org/*"],
+        "matches": ["<all_urls>"],
         "js": ["content.js"]
       }
     ],
