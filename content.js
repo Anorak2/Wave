@@ -1,38 +1,30 @@
-function gotKitten(item) {
-    console.log(`${item.kitten.name} has ${item.kitten.eyeCount} eyes`);
-}
-
-function gotMonster(item) {
-    console.log(`${item.monster.name} has ${item.monster.eyeCount} eyes`);
-}
 
 function onError(error) {
-    console.log(error)
+    console.log(error);
 }
 function setItem() {
     console.log("OK");
 }
-
-// define 2 objects
-let monster = {
-    name: "Kraken",
-    tentacles: true,
-    eyeCount: 10
+function onGot(item){
+    if (typeof item["websiteTracking"] == "undefined"){
+        browser.storage.local.set({websiteTracking: {mainArray: []}})
+    }
+    if (typeof item["websiteTracking"]["mainArray"][window.location.hostname] == "undefined"){
+        item["websiteTracking"]["mainArray"][window.location.hostname] = 0;
+    }
+    item["websiteTracking"]["mainArray"][window.location.hostname]++;
+    browser.storage.local.set({websiteTracking: {mainArray: item["websiteTracking"]["mainArray"]}})
 }
 
-let kitten = {
-    name: "Moggy",
-    tentacles: false,
-    eyeCount: 2
+
+
+async function updateArray(){
+    let storageItem = browser.storage.local.get("websiteTracking");
+    storageItem.then((result) => onGot(result), onError);
 }
 
-// store the objects
-//browser.storage.local.set({kitten, monster})
-//.then(setItem, onError);
-browser.storage.local.get("kitten")
-.then(gotKitten, onError);
-browser.storage.local.get("monster")
-.then(gotMonster, onError);
+updateArray();
 
+console.log(browser.storage.local.get());
 
-console.log(window.location.hostname)
+//browser.storage.local.clear()
