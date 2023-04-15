@@ -13,19 +13,20 @@
     "content_scripts": [
       {
         "matches": ["*://*.mozilla.org/*"],
-        "js": ["app.js"]
+        "js": ["content.js"]
       }
     ],
 
     "browser_action":{
       "default_icon":{
         "19":"icon-19.png",
-        "38":"icon-38.png"
+        "48":"icon-48.png"
       },
       "default_popup":"popup/popup.html"
      },
     "permissions":[
-        "tabs"
+        "tabs",
+        "storage"
     ] 
   }
   
