@@ -23,6 +23,6 @@ async function updateArray(){
 
 updateArray();
 
-console.log(browser.storage.local.get());
+//console.log(browser.storage.local.get());
 
 //browser.storage.local.clear()
