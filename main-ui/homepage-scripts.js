@@ -4,11 +4,6 @@ var page=0;
     //2 - websites visited
     //3 - payment settings
     //I might delete this
-var donationAmt = 10;
-	//The current weekly donation amount. This should be retrived from somewhere
-var balanceAmt = 25;
-	//The current balance in the wallet. This should also be retrived
-
 
 
 function onError(error){
@@ -112,7 +107,6 @@ function XrpCountOnGot(item){
   console.log(item);
   z = "" + item.amtXRP.toString() + " XRP";
   document.getElementById("3e").innerHTML = z;
-
 }
 
 async function updateXrpCount(){
