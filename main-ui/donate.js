@@ -1,6 +1,17 @@
 // what we want to do here is look at the stored web pages, determine which have ripple addresses, and then calculate an appropriate donation amount for each
 
-plannedDonation = 50; // want to actually load this
+function XrpCountOnGot(item){
+  console.log(item);
+  plannedDonation=item.amtXRP;
+  z = "" + item.amtXRP.toString() + " XRP";
+  document.getElementById("donationAmount").innerHTML = z;
+}
+
+async function updateXrpCount(){
+  let storageItem2 = browser.storage.local.get("amtXRP");
+  storageItem2.then((result) => XrpCountOnGot(result));
+  //console.log(browser.storage.local.get())
+}
 
 function load(url, callback) {
   var xhr = new XMLHttpRequest();
@@ -64,9 +75,9 @@ async function weekOnGot(item){
         donations[x] = 0;
     } else{
         rippleAddr.innerHTML = rippleAddresses[x];
-        donationAmount.innerHTML = Math.floor((item["websiteTracking"]["mainArray"][websiteDomains[x]]/visitsToCompatibleSites)*plannedDonation);
-        totalDonation+=Math.floor((item["websiteTracking"]["mainArray"][websiteDomains[x]]/visitsToCompatibleSites)*plannedDonation);
-        donations[x] = Math.floor((item["websiteTracking"]["mainArray"][websiteDomains[x]]/visitsToCompatibleSites)*plannedDonation);
+        donationAmount.innerHTML = Math.floor((item["websiteTracking"]["mainArray"][websiteDomains[x]]/visitsToCompatibleSites)*plannedDonation*1000)/1000;
+        totalDonation+=Math.floor((item["websiteTracking"]["mainArray"][websiteDomains[x]]/visitsToCompatibleSites)*plannedDonation*1000)/1000;
+        donations[x] = Math.floor((item["websiteTracking"]["mainArray"][websiteDomains[x]]/visitsToCompatibleSites)*plannedDonation*1000)/1000;
     }
   }
   let row = document.getElementById("weekTable").insertRow();
@@ -76,11 +87,11 @@ async function weekOnGot(item){
   numVisits.innerHTML = "<i>" + totalVisits + "</i>";
   let rippleAddr = row.insertCell(2);
   let donationAmount = row.insertCell(3);
+  totalDonation = Math.ceil(totalDonation*1000)/1000;
   donationAmount.innerHTML = "<i>" + totalDonation + "</i>";
   //}
   finishedSetup = true;
 }
-fillTableWeek();
 
 async function payToAddress(addr, amount){
     console.log(addr + " " + amount);
@@ -109,13 +120,24 @@ async function payWebsites(){
         alert("Page hasn't finished loading yet.");
     } else if (totalDonation>currentBalance){
         alert("You don't have enough XRP to pay. Please add some!");
+    } else if (totalDonation == 0){
+        alert("There aren't any websites to donate to!");
     } else {
+        if (!confirm("Confirm: pay " + totalDonation + " XRP?")){
+            return 0;
+        }
         for (var x = 0; x < websiteDomains.length; x++){
             if (rippleAddresses[x]!=0){
                 payToAddress(rippleAddresses[x], donations[x]);
             }
         }
     }
+    console.log("finished starting all payments")
+    setTimeout(() => {
+    if(confirm("Websites have been paid! Clear current websites?")){
+        browser.storage.local.remove("websiteTracking");
+    };location.reload();}, 15000) // should be enough time
+    
 }
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -123,3 +145,5 @@ document.addEventListener('DOMContentLoaded', function () {
           .addEventListener('click', function (){payWebsites()});
 });
 
+updateXrpCount();
+fillTableWeek();
