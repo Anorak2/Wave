@@ -1,7 +1,7 @@
 {
 
     "manifest_version": 2,
-    "name": "Wave",
+    "name": "SplashPay",
     "version": "1.0",
     "homepage_url": "https://github.com/Anorak2/Wave",
     "description": "Allows payment to websites you use.",
