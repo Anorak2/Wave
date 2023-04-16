@@ -24,11 +24,6 @@ async function createWallet(){
     checkWalletStatus();
 }
 
-document.addEventListener('DOMContentLoaded', function () {
-  document.getElementById('createWallet')
-          .addEventListener('click', function (){createWallet()});
-});
-
 async function updateBalanceInPage(walletAddress){
     const client = new xrpl.Client(XRP_SERVER);
     await client.connect();
@@ -57,6 +52,5 @@ function checkWalletStatus(){
         }
     });
 }
-
 
 checkWalletStatus();

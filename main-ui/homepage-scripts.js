@@ -14,6 +14,7 @@ var balanceAmt = 25;
 function onError(error){
   console.log(error);
 }
+
 function weekOnGot(item){
   //if (typeof item["websiteTracking"] != "undefined"){
   console.log(item["websiteTracking"]["mainArray"]);
