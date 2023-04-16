@@ -9,10 +9,11 @@
 <h2 id=pageTitle>Wallet configuration</h2>
 <!--we want to check if the user has configured a wallet. if they have, load the wallet. if they haven't, then allow them to create one.-->
 <div id="walletExists">
-
-
+<p>There is a stored wallet on the <u><span class="devmode-show">testnet</span><span class="devmode-hide">mainnet</span></u>.</p>
+<p>Address: <u id="walletAddress"></u></p>
+<p>Balance: <u id="currentBalance">loading...</u></p>
 </div>
-<div id="walletDoesNotExist">
+<div id="walletDoesNotExist" style="display:none;">
 <p>You do not currently have a wallet.</p>
 <p><button id="createWallet">Generate a wallet</button> on the <u><span class="devmode-show">testnet</span><span class="devmode-hide">mainnet</span></u></p>
 </div>
@@ -21,4 +22,6 @@ Developer mode: <button id="devModeToggle"></button>
 
 </body>
 <script src="devmode-button.js"></script>
+<script src="https://unpkg.com/xrpl/build/xrpl-latest-min.js"></script>
+<script src="wallet-config.js"></script>
 </html>
