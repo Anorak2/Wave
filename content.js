@@ -7,16 +7,14 @@ function setItem() {
 }
 function onGot(item){
     if (typeof item["websiteTracking"] == "undefined"){
-        browser.storage.local.set({websiteTracking: {mainArray: []}})
+        browser.storage.local.set({websiteTracking: {mainArray: []}});
     }
     if (typeof item["websiteTracking"]["mainArray"][window.location.hostname] == "undefined"){
         item["websiteTracking"]["mainArray"][window.location.hostname] = 0;
     }
     item["websiteTracking"]["mainArray"][window.location.hostname]++;
-    browser.storage.local.set({websiteTracking: {mainArray: item["websiteTracking"]["mainArray"]}})
+    browser.storage.local.set({websiteTracking: {mainArray: item["websiteTracking"]["mainArray"]}});
 }
-
-
 
 async function updateArray(){
     let storageItem = browser.storage.local.get("websiteTracking");

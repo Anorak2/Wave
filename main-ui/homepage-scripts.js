@@ -9,7 +9,33 @@ var donationAmt = 10;
 var balanceAmt = 25;
 	//The current balance in the wallet. This should also be retrived
 
-    
+
+
+function onError(error){
+  console.log(error);
+}
+function weekOnGot(item){
+  //if (typeof item["websiteTracking"] != "undefined"){
+  console.log(item["websiteTracking"]["mainArray"]);
+  const bogus = Object.keys(item["websiteTracking"]["mainArray"])
+  for(var x = 0; x < bogus.length; x++){
+    console.log(bogus[x]);
+    let row = document.getElementById("weekTable").insertRow();
+    let domainName = row.insertCell(0);
+    domainName.innerHTML = bogus[x];
+    //["websiteTracking"]["mainArray"].indexOf("element");
+    let numVisits = row.insertCell(1);
+    numVisits.innerHTML = item["websiteTracking"]["mainArray"][bogus[x]];
+  }
+  //}
+}
+
+async function fillTableWeek(){
+  let storageItem = browser.storage.local.get("websiteTracking");
+  storageItem.then((result) => weekOnGot(result), onError);
+}
+
+
 function checkDonations(){
 	document.getElementById("checkDonButton").style.display = "none";
    	document.getElementById("checkWebButton").style.display = "none";
@@ -43,10 +69,8 @@ function checkWebsites(){
     document.getElementById("pageTitle").innerHTML = "Websites you've visited";
     
     document.getElementById("2a").style.display = "block";
-    document.getElementById("2b").style.display = "block";
-    //Get user history
-    document.getElementById("2c").style.display = "block";
-    document.getElementById("2d").style.display = "block";
+    fillTableWeek();
+    document.getElementById("weekTable").style.display = "block";
     //Get user history
 
 }
@@ -96,10 +120,8 @@ function goBack(){
     document.getElementById("1f").style.display = "none";
     document.getElementById("1g").style.display = "none";
 
-	document.getElementById("2a").style.display = "none";
-    document.getElementById("2b").style.display = "none";
-    document.getElementById("2c").style.display = "none";
-    document.getElementById("2d").style.display = "none";
+	  document.getElementById("2a").style.display = "none";
+    document.getElementById("weekTable").style.display = "none";
     
     document.getElementById("3a").style.display = "none";
     document.getElementById("3b").style.display = "none";
