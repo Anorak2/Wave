@@ -5,11 +5,11 @@
 </head>
 <body>
 
-<h1>WavePay</h1>
+<h1>SplashPay</h1>
 <h2 id=pageTitle>Home</h2>
-<button id="checkDonButton">Check your donation details</button>
-<button id="checkWebButton">Check the websites you've visited</button>
-<button id="checkPayButton">Check your donation settings</button>
+<!--<button id="checkDonButton">Check your donation details</button>--><s id="checkDonButton"></s>
+<button style="display:block;" id="checkWebButton">Check the websites you've visited</button>
+<button style="display:block;" id="checkPayButton">Check your donation settings</button>
 <button hidden id="backButton">Back</button>
 
 <h3 hidden id="1a">This cycle, you're on track to donate:</h3>
@@ -26,18 +26,14 @@
     <td>Number of Visits</td>
   </tr></table>
 
-
 <h3 hidden id="3d">Weekly donation amount:</h3>
 <p  hidden id="3e">X XRP</p>
 <!-- <input hidden type="range" min="0" max=balanceAmt value=donationAmt class="slider" id="3f"> -->
 <input hidden id="3f" type="text" id="myText" placeholder="input">
 <button hidden id="3h">Confirm new value</button>
 
+<a href="homepage.html">Homepage</a> | <a href="wallet-config.html">Wallet config</a> | <a href="donate.html">Donate</a>
 <br />
-
-<a href="wallet-config.html">Wallet config</a>
-<br />
-
 Developer mode: <button id="devModeToggle"></button>
 
 </body>

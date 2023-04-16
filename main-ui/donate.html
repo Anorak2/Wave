@@ -5,23 +5,28 @@
 </head>
 <body>
 
-<h1>WavePay</h1>
+<h1>SplashPay</h1>
 <h2 id="pageTitle">Donate</h2>
 <!--we want to check if the user has configured a wallet. if they have, load the wallet. if they haven't, then allow them to create one.-->
 <div id="walletExists">
 <p>Address: <u id="walletAddress"></u></p>
 <p>Balance: <u id="currentBalance">loading...</u></p>
-</div>
+
 <table id="weekTable"><tr>
     <td>Website</td>
     <td>Number of Visits</td>
     <td>Ripple address</td>
     <td>Donation</td>
-  </tr></table>
+</tr></table>
+  
+<button id="payWebsites">Pay now</button>
+</div>
 <div id="walletDoesNotExist" style="display:none;">
 <p>You do not currently have a wallet. You may want to <a href="wallet-config.html">generate one</a>.</p>
 </div>
 
+<a href="homepage.html">Homepage</a> | <a href="wallet-config.html">Wallet config</a> | <a href="donate.html">Donate</a>
+<br />
 Developer mode: <button id="devModeToggle"></button>
 
 </body>

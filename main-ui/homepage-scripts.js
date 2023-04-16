@@ -96,27 +96,29 @@ function addRipple(){
 	alert("Eventually we'll have some code and this'll confirm the addition of XRPL");
 }
 
-function updateDonAmt(){
+async function updateDonAmt(){
   var x = document.getElementById("3f").value;
   x = parseFloat(x)
   let donationAmt = {
     amtXRP: x
   }
-  browser.storage.local.set(donationAmt)
-  alert("Your new donation amount is " + x + " XRP")
-  updateXrpCount()
+  await browser.storage.local.set(donationAmt);
+  //alert("Your new donation amount is " + x + " XRP")
+  updateXrpCount();
 }
 
 
 function XrpCountOnGot(item){
-  z = "" + item.donationAmt.amtXRP.toString() + " XRP";
+  console.log(item);
+  z = "" + item.amtXRP.toString() + " XRP";
   document.getElementById("3e").innerHTML = z;
 
 }
+
 async function updateXrpCount(){
-  let storageItem = browser.storage.local.get("donationAmt");
-  storageItem.then((result) => XrpCountOnGot(result), onError);
-  console.log(browser.storage.local.get())
+  let storageItem2 = browser.storage.local.get("amtXRP");
+  storageItem2.then((result) => XrpCountOnGot(result), onError);
+  //console.log(browser.storage.local.get())
 }
 
 function goBack(){
@@ -176,3 +178,5 @@ document.addEventListener('DOMContentLoaded', function () {
   document.getElementById('3h')
           .addEventListener('click', function (){updateDonAmt()});
 });
+
+updateXrpCount();
